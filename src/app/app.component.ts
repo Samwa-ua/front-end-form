@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {
+  FormArray,
   FormControl,
   FormGroupDirective,
   NgForm,
@@ -29,10 +30,23 @@ export class AppComponent {
   title = 'frontEndForm';
   firstName = new FormControl('', [Validators.required]);
   lastName = new FormControl('', [Validators.required]);
+  dateOfBirth = new FormControl('', [Validators.required]);
+  framework = new FormControl('', [Validators.required]);
+  frameworkVersion = new FormControl('', [Validators.required]);
+  hobbies = new FormArray([new FormControl(null, [Validators.required])]);
+  // hobby = new FormControl('', [Validators.required]);
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
 
   matcher = new MyErrorStateMatcher();
+  addHobby() {
+    (<FormArray>this.hobbies.get('')).push(new FormControl(null));
+    console.log(this.hobbies);
+  }
+
+  submit() {
+    console.log(this.firstName.value);
+  }
 }
