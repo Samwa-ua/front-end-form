@@ -27,6 +27,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class AppComponent {
   title = 'frontEndForm';
+  firstName = new FormControl('', [Validators.required]);
+  lastName = new FormControl('', [Validators.required]);
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,

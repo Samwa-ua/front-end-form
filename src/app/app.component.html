@@ -1,72 +1,96 @@
-<form class="example-form">
-  <table class="example-full-width" cellspacing="0">
-    <tr>
-      <td>
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Ім'я</mat-label>
-          <input matInput>
-        </mat-form-field>
-      </td>
-      <td>
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Прізвище</mat-label>
-          <input matInput>
-        </mat-form-field>
-      </td>
-    </tr>
-  </table>
-  <mat-form-field appearance="fill" class="example-full-width">
-    <mat-label>День Народження</mat-label>
-    <input matInput [matDatepicker]="datepicker">
-    <mat-hint>ММ/ДД/РРРР</mat-hint>
-    <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
-    <mat-datepicker #datepicker>
-      <mat-datepicker-actions>
-        <button mat-button matDatepickerCancel>Скасувати</button>
-        <button mat-raised-button color="primary" matDatepickerApply>Застосувати</button>
-      </mat-datepicker-actions>
-    </mat-datepicker>
-  </mat-form-field>
-  <table class="example-full-width" cellspacing="0">
-    <tr>
-      <td>
-        <mat-form-field appearance="fill">
-          <mat-label>Вибір JS технології</mat-label>
-          <mat-select>
-            <mat-option value="one">angular</mat-option>
-            <mat-option value="two">react</mat-option>
-            <mat-option value="three">vue</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </td>
-      <td>
-        <mat-form-field appearance="fill">
-          <mat-label>Вибір версії фреймворку</mat-label>
-          <mat-select>
-            <mat-option value="one">1.1.1</mat-option>
-            <mat-option value="two">2.1.2</mat-option>
-            <mat-option value="three">3.3.1</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </td>
-    </tr>
-  </table>
-  <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Email</mat-label>
-    <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
-      placeholder="Ex. pat@example.com">
-    <mat-hint>Errors appear instantly!</mat-hint>
-    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-      Please enter a valid email address
-    </mat-error>
-    <mat-error *ngIf="emailFormControl.hasError('required')">
-      Email is <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
-
-
-  <mat-form-field appearance="fill">
-    <mat-label>Textarea</mat-label>
-    <textarea matInput></textarea>
-  </mat-form-field>
-</form>
+<div class="container">
+  <h1 class="title">Анкета Front-End Developer</h1>
+  <form class="example-form">
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Ім'я</mat-label>
+            <input matInput type="text" [formControl]="firstName" [errorStateMatcher]="matcher">
+            <mat-error *ngIf="firstName.hasError('required')">
+              Поле Ім'я є <strong>обов'язковим</strong>
+            </mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Прізвище</mat-label>
+            <input matInput [formControl]="lastName" type="text" [errorStateMatcher]="matcher">
+            <mat-error *ngIf="lastName.hasError('required')">
+              Поле Прізвище є <strong>обов'язковим</strong>
+            </mat-error>
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>День Народження</mat-label>
+            <input matInput [matDatepicker]="datepicker">
+            <mat-hint>ММ/ДД/РРРР</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker>
+              <mat-datepicker-actions>
+                <button mat-button matDatepickerCancel>Скасувати</button>
+                <button mat-raised-button color="primary" matDatepickerApply>Застосувати</button>
+              </mat-datepicker-actions>
+            </mat-datepicker>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+              placeholder="Ex. pat@example.com">
+            <mat-hint>test@test.test</mat-hint>
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Вибір JS технології</mat-label>
+            <mat-select>
+              <mat-option value="one">angular</mat-option>
+              <mat-option value="two">react</mat-option>
+              <mat-option value="three">vue</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Вибір версії фреймворку</mat-label>
+            <mat-select>
+              <mat-option value="one">1.1.1</mat-option>
+              <mat-option value="two">2.1.2</mat-option>
+              <mat-option value="three">3.3.1</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Хобі</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Скільки займаєтесь</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+    <div class="demo-button-container">
+      <button mat-raised-button type="button" color="primary">Відправити</button>
+    </div>
+  </form>
+</div>
