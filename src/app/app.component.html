@@ -1,24 +1,24 @@
 <div class="container">
   <h1 class="title">Анкета Front-End Developer</h1>
-  <form class="example-form">
+  <form class="example-form" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
     <table class="example-full-width" cellspacing="0">
       <tr>
         <td>
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Ім'я</mat-label>
-            <input matInput type="text" [formControl]="firstName" [errorStateMatcher]="matcher">
-            <mat-error *ngIf="firstName.hasError('required')">
+            <input matInput type="text" formControlName="firstName" [errorStateMatcher]="matcher">
+            <!-- <mat-error *ngIf="firstName.hasError('required')">
               Поле Ім'я є <strong>обов'язковим</strong>
-            </mat-error>
+            </mat-error> -->
           </mat-form-field>
         </td>
         <td>
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Прізвище</mat-label>
-            <input matInput [formControl]="lastName" type="text" [errorStateMatcher]="matcher">
-            <mat-error *ngIf="lastName.hasError('required')">
+            <input matInput formControlName="lastName" type="text" [errorStateMatcher]="matcher">
+            <!-- <mat-error *ngIf="lastName.hasError('required')">
               Поле Прізвище є <strong>обов'язковим</strong>
-            </mat-error>
+            </mat-error> -->
           </mat-form-field>
         </td>
       </tr>
@@ -40,15 +40,15 @@
         <td>
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Email</mat-label>
-            <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+            <input type="email" matInput formControlName="email" [errorStateMatcher]="matcher"
               placeholder="Ex. pat@example.com">
             <mat-hint>test@test.test</mat-hint>
-            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            <!-- <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
               Please enter a valid email address
-            </mat-error>
-            <mat-error *ngIf="emailFormControl.hasError('required')">
+            </mat-error> -->
+            <!-- <mat-error *ngIf="emailFormControl.hasError('required')">
               Email is <strong>required</strong>
-            </mat-error>
+            </mat-error> -->
           </mat-form-field>
         </td>
       </tr>
@@ -91,7 +91,7 @@
       <button type="button" (click)="addHobby">Додати хобі</button>
     </table>
     <div class="demo-button-container">
-      <button mat-raised-button type="button" color="primary" (click)="submit()">Відправити</button>
+      <button mat-raised-button type="submit" color="primary">Відправити</button>
     </div>
   </form>
 </div>

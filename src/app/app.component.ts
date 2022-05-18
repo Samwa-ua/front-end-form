@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormArray,
   FormControl,
+  FormGroup,
   FormGroupDirective,
   NgForm,
   Validators,
@@ -26,27 +27,28 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'frontEndForm';
-  firstName = new FormControl('', [Validators.required]);
-  lastName = new FormControl('', [Validators.required]);
-  dateOfBirth = new FormControl('', [Validators.required]);
-  framework = new FormControl('', [Validators.required]);
-  frameworkVersion = new FormControl('', [Validators.required]);
-  hobbies = new FormArray([new FormControl(null, [Validators.required])]);
-  // hobby = new FormControl('', [Validators.required]);
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
+  profileForm: FormGroup;
+
+  ngOnInit(): void {
+    this.profileForm = new FormGroup({
+      firstName: new FormControl(null, [Validators.required]),
+      lastName: new FormControl(null, [Validators.required]),
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      dateOfBirth: new FormControl(null, [Validators.required]),
+      framework: new FormControl(null, [Validators.required]),
+      frameworkVersion: new FormControl(null, [Validators.required]),
+      hobbies: new FormArray([new FormControl(null, [Validators.required])]),
+    });
+  }
 
   matcher = new MyErrorStateMatcher();
   addHobby() {
-    (<FormArray>this.hobbies.get('')).push(new FormControl(null));
-    console.log(this.hobbies);
+    console.log(this);
   }
 
-  submit() {
-    console.log(this.firstName.value);
+  onSubmit() {
+    console.log(this.profileForm.value);
   }
 }
