@@ -89,6 +89,7 @@ export class ProfileFormComponent implements OnInit {
     });
     this.hobbies.push(hobbiesForm);
   }
+
   convertToJSON(): void {
     const data = {
       firstName: this.profileForm.value.firstName,
@@ -102,6 +103,7 @@ export class ProfileFormComponent implements OnInit {
 
     console.log(data);
   }
+
   formatDate(time) {
     return new Date(time).toLocaleString('en-us', {
       year: 'numeric',
@@ -109,6 +111,7 @@ export class ProfileFormComponent implements OnInit {
       day: '2-digit',
     });
   }
+
   onSubmit() {
     this.convertToJSON();
   }

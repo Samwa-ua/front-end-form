@@ -55,21 +55,27 @@
                 <td>
                     <mat-form-field class="example-full-width" appearance="fill">
                         <mat-label>Вибір JS технології</mat-label>
-                        <mat-select formControlName="framework">
+                        <mat-select formControlName="framework" [errorStateMatcher]="matcher">
                             <mat-option *ngFor="let framework of jsTechnologies" [value]="framework">
                                 {{framework.framework}}
                             </mat-option>
                         </mat-select>
+                        <mat-error *ngIf="!profileForm.get('framework').valid">
+                            Поле є обов'язковим
+                        </mat-error>
                     </mat-form-field>
                 </td>
                 <td>
                     <mat-form-field class="example-full-width" appearance="fill">
                         <mat-label>Вибір версії фреймворку</mat-label>
-                        <mat-select formControlName="frameworkVersion">
+                        <mat-select formControlName="frameworkVersion" [errorStateMatcher]="matcher">
                             <mat-option *ngFor="let versions of frameworkVersion" [value]="versions">
                                 {{versions}}
                             </mat-option>
                         </mat-select>
+                        <mat-error *ngIf="!profileForm.get('frameworkVersion').valid">
+                            Виберіть версію
+                        </mat-error>
                     </mat-form-field>
                 </td>
             </tr>
