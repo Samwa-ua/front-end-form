@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  AsyncValidator,
   FormArray,
   FormControl,
-  FormGroup,
   FormGroupDirective,
   NgForm,
   Validators,
@@ -13,6 +13,9 @@ import { ErrorStateMatcher } from '@angular/material/core';
 interface IJSTechnologies {
   framework: string;
   versions: string[];
+}
+interface IEmailValidation {
+  restrictedEmail?: boolean;
 }
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -46,10 +49,15 @@ export class AppComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   matcher = new MyErrorStateMatcher();
+
   profileForm = this.fb.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
-    email: ['', Validators.required, Validators.email, this.restrictedEmail()],
+    email: [
+      '',
+      [Validators.required, Validators.email],
+      this.restrictedEmail.bind(this) as AsyncValidator,
+    ],
     dateOfBirth: ['', Validators.required],
     framework: ['', Validators.required],
     frameworkVersion: ['', Validators.required],
@@ -66,8 +74,17 @@ export class AppComponent implements OnInit {
     return this.profileForm.controls['hobbies'] as FormArray;
   }
 
-  restrictedEmail() {
-    // console.log(this);
+  restrictedEmail(control: FormControl): Promise<IEmailValidation> {
+    const promise = new Promise<IEmailValidation>((resolve, reject) => {
+      setTimeout(() => {
+        if (control.value === 'test@test.test') {
+          resolve({ restrictedEmail: true });
+        } else {
+          resolve(null);
+        }
+      }, 2000);
+    });
+    return promise;
   }
 
   addHobby() {
