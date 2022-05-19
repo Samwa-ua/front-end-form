@@ -96,6 +96,7 @@ export class ProfileFormComponent implements OnInit {
       dateOfBirth: this.formatDate(this.profileForm.value.dateOfBirth),
       framework: this.profileForm.value.framework.framework,
       frameworkVersion: this.profileForm.value.frameworkVersion,
+      email: this.profileForm.value.email,
       hobbies: this.profileForm.value.hobbies,
     };
 
