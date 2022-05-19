@@ -29,23 +29,25 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class AppComponent implements OnInit {
   title = 'frontEndForm';
+
   profileForm: FormGroup;
 
   ngOnInit(): void {
     this.profileForm = new FormGroup({
-      firstName: new FormControl(null, [Validators.required]),
+      firstName: new FormControl(null, Validators.required),
       lastName: new FormControl(null, [Validators.required]),
       email: new FormControl(null, [Validators.required, Validators.email]),
       dateOfBirth: new FormControl(null, [Validators.required]),
       framework: new FormControl(null, [Validators.required]),
       frameworkVersion: new FormControl(null, [Validators.required]),
-      hobbies: new FormArray([new FormControl(null, [Validators.required])]),
+      hobbies: new FormArray([new FormControl(null)]),
     });
   }
 
   matcher = new MyErrorStateMatcher();
+
   addHobby() {
-    console.log(this);
+    (<FormArray>this.profileForm.get('hobbies')).push(new FormControl(null));
   }
 
   onSubmit() {
