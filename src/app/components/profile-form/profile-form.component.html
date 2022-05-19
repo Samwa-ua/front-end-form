@@ -46,7 +46,7 @@
                         <input type="email" matInput formControlName="email" [errorStateMatcher]="matcher">
                         <mat-hint>test@test.test</mat-hint>
                         <mat-error *ngIf="!profileForm.get('email').valid">
-                            Введіть правильну адресу
+                            Адреса вже існує
                         </mat-error>
                     </mat-form-field>
                 </td>
@@ -94,8 +94,7 @@
             <button type="button" (click)="addHobby()">Додати хобі</button>
         </table>
         <div class="demo-button-container">
-            <!-- <button mat-raised-button type="submit" color="primary" [disabled]="!profileForm.valid">Відправити</button> -->
-            <button mat-raised-button type="submit" color="primary">Відправити</button>
+            <button mat-raised-button type="submit" color="primary" [disabled]="!profileForm.valid">Відправити</button>
         </div>
     </form>
 </div>

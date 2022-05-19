@@ -89,8 +89,26 @@ export class ProfileFormComponent implements OnInit {
     });
     this.hobbies.push(hobbiesForm);
   }
+  convertToJSON(): void {
+    const data = {
+      firstName: this.profileForm.value.firstName,
+      lastName: this.profileForm.value.lastName,
+      dateOfBirth: this.formatDate(this.profileForm.value.dateOfBirth),
+      framework: this.profileForm.value.framework.framework,
+      frameworkVersion: this.profileForm.value.frameworkVersion,
+      hobbies: this.profileForm.value.hobbies,
+    };
 
+    console.log(data);
+  }
+  formatDate(time) {
+    return new Date(time).toLocaleString('en-us', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    });
+  }
   onSubmit() {
-    console.log(this.profileForm.value);
+    this.convertToJSON();
   }
 }
