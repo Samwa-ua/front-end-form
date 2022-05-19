@@ -57,9 +57,9 @@
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Вибір JS технології</mat-label>
             <mat-select formControlName="framework">
-              <mat-option value="one">angular</mat-option>
-              <mat-option value="two">react</mat-option>
-              <mat-option value="three">vue</mat-option>
+              <mat-option *ngFor="let framework of frameworks" [value]="framework">
+                {{framework.framework}}
+              </mat-option>
             </mat-select>
           </mat-form-field>
         </td>
@@ -67,9 +67,9 @@
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Вибір версії фреймворку</mat-label>
             <mat-select formControlName="frameworkVersion">
-              <mat-option value="one">1.1.1</mat-option>
-              <mat-option value="two">2.1.2</mat-option>
-              <mat-option value="three">3.3.1</mat-option>
+              <mat-option *ngFor="let versions of frameworkVersion" [value]="versions">
+                {{versions}}
+              </mat-option>
             </mat-select>
           </mat-form-field>
         </td>
@@ -85,7 +85,7 @@
             </td>
             <td>
               <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Скільки займаєтесь</mat-label>
+                <mat-label>Скільки часу займаєтесь</mat-label>
                 <input matInput formControlName="duration">
               </mat-form-field>
             </td>
