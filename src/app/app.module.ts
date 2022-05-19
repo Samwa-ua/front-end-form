@@ -16,9 +16,10 @@ import {
   MatNativeDateModule,
   ShowOnDirtyErrorStateMatcher,
 } from '@angular/material/core';
+import { ProfileFormComponent } from './components/profile-form/profile-form.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ProfileFormComponent],
   imports: [
     BrowserModule,
     ReactiveFormsModule,

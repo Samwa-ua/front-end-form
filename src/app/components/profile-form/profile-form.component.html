@@ -1,0 +1,101 @@
+<div class="container">
+    <h1 class="title">Анкета Front-End Developer</h1>
+    <form class="example-form" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Ім'я</mat-label>
+                        <input matInput formControlName="firstName" [errorStateMatcher]="matcher">
+                        <mat-error *ngIf="!profileForm.get('firstName').valid">
+                            Поле Ім'я є <strong>обов'язковим</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Прізвище</mat-label>
+                        <input matInput formControlName="lastName" type="text" [errorStateMatcher]="matcher">
+                        <mat-error *ngIf="!profileForm.get('lastName').valid">
+                            Поле Прізвище є <strong>обов'язковим</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field appearance="fill" class="example-full-width">
+                        <mat-label>День Народження</mat-label>
+                        <input matInput [matDatepicker]="datepicker" formControlName="dateOfBirth">
+                        <mat-hint>ММ/ДД/РРРР</mat-hint>
+                        <mat-error *ngIf="!profileForm.get('dateOfBirth').valid">
+                            Будь ласка оберіть дату народження
+                        </mat-error>
+                        <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                        <mat-datepicker #datepicker>
+                            <mat-datepicker-actions>
+                                <button mat-button matDatepickerCancel>Скасувати</button>
+                                <button mat-raised-button color="primary" matDatepickerApply>Застосувати</button>
+                            </mat-datepicker-actions>
+                        </mat-datepicker>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Email</mat-label>
+                        <input type="email" matInput formControlName="email" [errorStateMatcher]="matcher">
+                        <mat-hint>test@test.test</mat-hint>
+                        <mat-error *ngIf="!profileForm.get('email').valid">
+                            Введіть правильну адресу
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Вибір JS технології</mat-label>
+                        <mat-select formControlName="framework">
+                            <mat-option *ngFor="let framework of jsTechnologies" [value]="framework">
+                                {{framework.framework}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Вибір версії фреймворку</mat-label>
+                        <mat-select formControlName="frameworkVersion">
+                            <mat-option *ngFor="let versions of frameworkVersion" [value]="versions">
+                                {{versions}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <ng-container formArrayName="hobbies">
+                <ng-container *ngFor="let hobby of hobbies.controls; let i = index">
+                    <tr [formGroupName]="i">
+                        <td>
+                            <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label>Хобі</mat-label>
+                                <input matInput formControlName="title">
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label>Скільки часу займаєтесь</mat-label>
+                                <input matInput formControlName="duration">
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                </ng-container>
+            </ng-container>
+            <button type="button" (click)="addHobby()">Додати хобі</button>
+        </table>
+        <div class="demo-button-container">
+            <!-- <button mat-raised-button type="submit" color="primary" [disabled]="!profileForm.valid">Відправити</button> -->
+            <button mat-raised-button type="submit" color="primary">Відправити</button>
+        </div>
+    </form>
+</div>
